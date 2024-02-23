@@ -7,7 +7,7 @@ function playNotificationSound() {
 
 // Attach event listener to the playSoundButton
 document.getElementById('playSoundButton').addEventListener('click', function () {
-    console.log('click trigger');
+    // console.log('click trigger');
     playNotificationSound();
 });
 

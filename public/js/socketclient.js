@@ -4,6 +4,7 @@ const port = 3000;
 const ip = domain + ':' + port;
 
 let isClicked = false;
+let numConnections = 0;
 
 const socket = io('http://localhost:3000');
 
@@ -23,8 +24,6 @@ socket.on('connect', () => {
 });
 
 socket.on('chat message', (msg) => {
-    console
-        .log('Client message: ' + msg);
     toastr.info('new message sent to server');
     playNotificationSound();
 });
