@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
     console.log('User connected');
 
     socket.on('chat message', (msg) => {
-        console.log('Server message: ' + msg);
+        console.log('New messages received on server : ' + msg);
         io.emit('chat message', msg);
     });
 

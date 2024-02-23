@@ -1,24 +1,31 @@
-console.log('socketclient.js loaded');
-
 const origin = window.location.origin.split(':');
 const domain = origin.splice(0, 2).join(':');
 const port = 3000;
 const ip = domain + ':' + port;
-console.log('ip: ' + ip);
+
+let isClicked = false;
 
 const socket = io('http://localhost:3000');
 
 socket.on('connect', () => {
-    // console.log('connected');
-    socket.emit('chat message', 'Hello');
+    setInterval(() => {
+        if (!isClicked) {
+            playSoundButton.dispatchEvent(new Event('click'));
+            isClicked = true;
+        }
+        socket.emit('chat message', 'Hello');
+    }, 3000);
 
     socket.on('disconnect', () => {
+        clearInterval();
         console.log('disconnected');
     });
-
 });
 
 socket.on('chat message', (msg) => {
     console
         .log('Client message: ' + msg);
+    toastr.info('new message sent to server');
+    playNotificationSound();
 });
+
